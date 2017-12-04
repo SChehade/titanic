@@ -17,15 +17,21 @@ train_filename = 'data/train.csv'
 data = pd.read_csv(train_filename)
 y_df = data['Survived']
 X_df = data.drop(['Survived', 'PassengerId'], axis=1)
+print("Head")
 print(X_df.head(5))
-
-data.count()
-data.groupby('Survived').count()
+print("data count")
+print(data.count())
+print("data describe")
+print(data.describe())
+print("number survived")
+print(data.groupby('Survived').count())
+print("frequency count")
+print(data['Embarked'].value_counts())
 
 #some plots
 
 #scatter plots
-from pandas.tools.plotting import scatter_matrix
+from pandas.plotting import scatter_matrix
 scatter_matrix(data.get(['Fare', 'Pclass', 'Age']), alpha=0.2,
                figsize=(8, 8), diagonal='kde');
                

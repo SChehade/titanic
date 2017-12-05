@@ -19,9 +19,9 @@ class FeatureExtractor():
                  X_df.Embarked, prefix='Embarked', drop_first=True)],
             axis=1)
         
-        table = pd.pivot_table(X_df_new,values='Age', index='Parch' ,columns='SibSp', aggfunc=np.median)
+        table = pd.pivot_table(X_df_new,values='Age', index=['Parch','SibSp'], aggfunc=np.median)
 # Define function to return value of this pivot_table
-        truc = X_df_new[pd.isnull(X_df['Age'])]
+        truc = X_df_new[pd.isnull(X_df_new['Age'])]
         def fage(x):
             return table.loc[x['Parch'],x['SibSp']]
         

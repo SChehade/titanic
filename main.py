@@ -25,8 +25,48 @@ print("data describe")
 print(data.describe())
 print("number survived")
 print(data.groupby('Survived').count())
-print("frequency count")
-print(data['Embarked'].value_counts())
+#print("frequency count")
+#print(data['Sex'].value_counts())
+
+# Tests for classification
+temp1 = data['Sex'].value_counts()
+temp2 = pd.pivot_table(data,values='Survived',index=['Sex'])
+print('Frequency Table for Gender:' )
+print(temp1)
+
+print('\n Probility of Surviving for each Gender:' )
+print(temp2)
+
+
+temp1 = data['Pclass'].value_counts()
+temp2 = pd.pivot_table(data,values='Survived',index=['Pclass'])
+print('Frequency Table for Pclass:' )
+print(temp1)
+
+print('\n Probility of Surviving for each Class:' )
+print(temp2)
+
+
+temp1 = data['SibSp'].value_counts()
+temp2 = pd.pivot_table(data,values='Survived',index=['SibSp'])
+print('Frequency Table for Number of siblings/spouses:' )
+print(temp1)
+
+print('\n Probility of Surviving for Number of siblings/spouses:' )
+print(temp2)
+
+
+temp1 = data['Parch'].value_counts()
+temp2 = pd.pivot_table(data,values='Survived',index=['Parch'])
+print('Frequency Table for Number of parents/children:' )
+print(temp1)
+
+print('\n Probility of Surviving for Number of parents/children:' )
+print(temp2)
+
+#Missing data
+print('How much missing data')
+print(data.apply(lambda x: sum(x.isnull()),axis=0))
 
 #some plots
 

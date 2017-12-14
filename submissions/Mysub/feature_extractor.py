@@ -19,6 +19,7 @@ class FeatureExtractor():
                  X_df.Embarked, prefix='Embarked', drop_first=True)],
             axis=1)
             
+        X_df_new["Age"].fillna(X_df_new.groupby(["Parch", "SibSp"])["Age"].transform("median"), inplace=True)
             
 #        table = pd.pivot_table(X_df_new,values='Age', index=['Parch','SibSp'], aggfunc=np.median)
 #        table.rename(columns={'Age': 'Age_median'}, inplace=True)

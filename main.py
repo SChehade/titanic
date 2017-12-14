@@ -15,7 +15,7 @@ import pandas as pd
 #loading the data
 train_filename = 'data/train.csv'
 data = pd.read_csv(train_filename)
-data.dropna(axis=0, how='any', inplace=True)
+#data.dropna(axis=0, how='any', inplace=True)
 y_df = data['Survived']
 X_df = data.drop(['Survived', 'PassengerId'], axis=1)
 print("Head")

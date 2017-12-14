@@ -19,25 +19,11 @@ class FeatureExtractor():
                  X_df.Embarked, prefix='Embarked', drop_first=True)],
             axis=1)
             
-        X_df_new["Age"].fillna(X_df_new.groupby(["Parch", "SibSp"])["Age"].transform("median"), inplace=True)
+        
+        new_age=X_df_new.groupby(["Parch", "SibSp"])["Age"].transform("median")
+        X_df_new['Age']=new_age
             
-#        table = pd.pivot_table(X_df_new,values='Age', index=['Parch','SibSp'], aggfunc=np.median)
-#        table.rename(columns={'Age': 'Age_median'}, inplace=True)
-#
-#        table.reset_index(inplace=True)
-        
-        #X_df_new=X_df_new.fillna(-1) 
-        
-        #X_df_new=pd.merge(X_df_new,table,on=['Parch','SibSp'])
-        #ind=X_df_new.loc[pd.isnull(X_df_new['Age']),'Age']
-        #X_filtered = X_df_new.dropna(axis=0, how='any', inplace=False)
-#        X_df_new.loc[pd.isnull(X_df_new['Age']),'Age'] = X_df_new['Age_median']
-## Replace missing values
-#          
-#             
-#        #X_df_new = X_df_new['Age'].fillna(X_df_new['Age'].mean())
-#        X_df_new.drop('Age_median',axis=1,inplace=True)
-        X_df_new = X_df_new.fillna(X_df_new.median())
+        X_df_new = X_df_new.fillna(-1)
       
         
         XX = X_df_new.values
